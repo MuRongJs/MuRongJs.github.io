@@ -25,7 +25,7 @@
 <body>
   <div id="app" :style="customSty">
     <div class="btn">
-      <button class="btn-l" @click="popUp">~~~~~</button>
+      <input class="btn-l" v-model="url"/>
       <button class="btn-r" @click="switchSty">!!!!!</button>
     </div>
     <iframe :src="url" frameborder="0"></iframe>
@@ -38,10 +38,6 @@
         customSty: ''
       },
       methods: {
-        popUp() {
-          const val = prompt("请输入您的名字：", this.url);
-          this.url = val;
-        },
         switchSty() {
           this.customSty = 'filter: invert(1) hue-rotate(180deg);';
         }
