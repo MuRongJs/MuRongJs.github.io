@@ -1,1 +1,52 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lll</title>
+  <style>
+    body,iframe{
+      width: 100vw;
+      height: 100vh;
+    }
+    .btn{
+      display: flex;
+    }
+    .btn-l{
+      flex-grow: 1;
+    }
+    .btn-r{
+      flex-grow: 1;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+</head>
+<body>
+  <div id="app" :style="customSty">
+    <div class="btn">
+      <button class="btn-l" @click="popUp">~~~~~</button>
+      <button class="btn-r" @click="switchSty">!!!!!</button>
+    </div>
+    <iframe :src="url" frameborder="0"></iframe>
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        url: '',
+        customSty: ''
+      },
+      methods: {
+        popUp() {
+          const val = prompt("请输入您的名字：", this.url);
+          this.url = val;
+        },
+        switchSty() {
+          this.customSty = 'filter: invert(1) hue-rotate(180deg);';
+        }
+      }
+    })
+  </script>
+</body>
+</html>
