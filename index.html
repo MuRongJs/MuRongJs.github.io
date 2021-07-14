@@ -13,11 +13,8 @@
     .btn{
       display: flex;
     }
-    .btn-l{
-      flex-grow: 1;
-    }
-    .btn-r{
-      flex-grow: 1;
+    .btn-item{
+      flex: 1;
     }
   </style>
   <!-- 引入样式 -->
@@ -29,15 +26,16 @@
 <body>
   <div id="app" :style="customSty">
     <div class="btn">
-      <el-menu :default-active="activeIndex" class="btn-l" mode="horizontal" @select="handleSelect">
-      <el-submenu index="1">
-        <template slot="title">我的工作台</template>
-        <el-menu-item index="https://labuladong.gitbook.io/algo">
-          算法
-        </el-menu-item>
-      </el-submenu>
-    </el-menu>
-      <button class="btn-r" @click="switchSty">!!!!!</button>
+      <el-menu :default-active="activeIndex" class="btn-item" mode="horizontal" @select="handleSelect">
+        <el-submenu index="1">
+          <template slot="title">我的工作台</template>
+          <el-menu-item index="https://labuladong.gitbook.io/algo">
+            算法
+          </el-menu-item>
+        </el-submenu>
+      </el-menu>
+      <input type="text" class="item" v-model="url">
+      <button class="btn-item" @click="switchSty">!!!!!</button>
     </div>
     <iframe :src="url" frameborder="0"></iframe>
   </div>
