@@ -26,15 +26,26 @@
 <body>
   <div id="app" :style="customSty">
     <div class="btn">
-      <el-menu :default-active="activeIndex" class="btn-item" mode="horizontal" @select="handleSelect">
+      <el-menu class="btn-item" mode="horizontal" @select="urlSelect">
         <el-submenu index="1">
-          <template slot="title">我的工作台</template>
+          <template slot="title">网址</template>
           <el-menu-item index="https://labuladong.gitbook.io/algo">
             算法
           </el-menu-item>
         </el-submenu>
       </el-menu>
       <input type="text" class="item" v-model="url">
+      <el-menu class="btn-item" mode="horizontal" @select="colorSelect">
+        <el-submenu index="1">
+          <template slot="title">样式</template>
+          <el-menu-item index="filter: invert(1) hue-rotate(180deg);">
+            黑色
+          </el-menu-item>
+          <el-menu-item index="filter: sepia(1);">
+            白色
+          </el-menu-item>
+        </el-submenu>
+      </el-menu>
       <button class="btn-item" @click="switchSty">!!!!!</button>
     </div>
     <iframe :src="url" frameborder="0"></iframe>
@@ -44,14 +55,13 @@
       el: '#app',
       data: {
         url: '',
-        customSty: '',
-        activeIndex: '1'
+        customSty: ''
       },
       methods: {
-        switchSty() {
-          this.customSty = 'filter: invert(1) hue-rotate(180deg);';
+        colorSelect(key, keyPath) {
+          this.customSty = key;
         },
-        handleSelect(key, keyPath) {
+        urlSelect(key, keyPath) {
           console.log(key, keyPath);
           this.url = key;   
         }
