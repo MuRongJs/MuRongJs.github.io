@@ -20,12 +20,23 @@
       flex-grow: 1;
     }
   </style>
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+  <!-- 引入组件库 -->
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
 <body>
   <div id="app" :style="customSty">
     <div class="btn">
-      <input class="btn-l" v-model="url"/>
+      <el-menu :default-active="activeIndex" class="btn-l" mode="horizontal" @select="handleSelect">
+      <el-submenu index="1">
+        <template slot="title">我的工作台</template>
+        <el-menu-item index="https://labuladong.gitbook.io/algo">
+          算法
+        </el-menu-item>
+      </el-submenu>
+    </el-menu>
       <button class="btn-r" @click="switchSty">!!!!!</button>
     </div>
     <iframe :src="url" frameborder="0"></iframe>
@@ -35,11 +46,16 @@
       el: '#app',
       data: {
         url: '',
-        customSty: ''
+        customSty: '',
+        activeIndex: '1'
       },
       methods: {
         switchSty() {
           this.customSty = 'filter: invert(1) hue-rotate(180deg);';
+        },
+        handleSelect(key, keyPath) {
+          console.log(key, keyPath);
+          this.url = key;   
         }
       }
     })
